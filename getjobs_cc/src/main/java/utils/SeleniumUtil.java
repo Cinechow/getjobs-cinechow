@@ -16,6 +16,5 @@ public class SeleniumUtil {
     private static void getActions() {
     }
 
-    private static void getChromeDriver() {
-    }
+
 }

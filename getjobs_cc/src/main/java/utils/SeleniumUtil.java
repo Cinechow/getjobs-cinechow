@@ -10,6 +10,9 @@ public class SeleniumUtil {
         SeleniumUtil.getWait();
     }
 
+    private static void getChromeDriver() {
+    }
+
     private static void getWait() {
     }
 

@@ -42,7 +42,7 @@ public class SeleniumUtil {
         JSONArray jsonArray = new JSONArray();
         //将每一个cookie转换为JSONObject，并添加到JSONArray中
         for (Cookie cookie : cookies){
-            JSONObject jsonObject = new JSONObject();
+
         }
     }
 

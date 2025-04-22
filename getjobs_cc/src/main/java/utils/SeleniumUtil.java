@@ -47,8 +47,10 @@ public class SeleniumUtil {
         options.addArguments("--window-size=1600,1000");//设置窗口大小以适应副屏分辨率
         options.addArguments("--start-maximized");//最大化窗口
 //        options.addArguments("--headless");//切换无头模式
+        //创建ChormeDriver实例，并将起赋值给CHROME——DRIVER静态变量
         CHROME_DRIVER = new ChromeDriver(options);
     }
+    //保存cookie到指定路径
     public static void saveCookie(String path) {
         //获取所有cookies
         Set<Cookie> cookies = CHROME_DRIVER.manage().getCookies();
@@ -76,6 +78,7 @@ public class SeleniumUtil {
             log.error("保存cookie异常！保存路径:{}", path);
         }
     }
+    //从指定路径加载cookie
     public static void lodCookie(String cookiePath){
         //首先清除由于浏览器打开已有的cookies
         CHROME_DRIVER.manage().deleteAllCookies();
@@ -116,13 +119,16 @@ public class SeleniumUtil {
             }
         }
     }
+    //初始化action对象
     public static void getActions(){
         ACTIONS = new Actions(CHROME_DRIVER);
     }
 
+    //初始化WebDriverWait对象
     public static void getWait(long time) {
         WAIT = new WebDriverWait(CHROME_DRIVER,time);
     }
+    //使当前线程休眠指定秒数
     public static void sleep(int seconds){
         try {
             TimeUnit.SECONDS.sleep(seconds);
@@ -131,14 +137,16 @@ public class SeleniumUtil {
             log.error("Sleep was interrupted", e);
         }
     }
+    //使当前线程休眠指定毫秒数
     public static void sleepByMilliSeconds(int milliSeconds){
         try {
-            TimeUnit.MICROSECONDS.sleep(milliSeconds);
+            TimeUnit.MILLISECONDS.sleep(milliSeconds);
         }catch (InterruptedException e){
             Thread.currentThread().interrupt();
             log.error("Sleep was interrupted", e);
         }
     }
+    //查找所有匹配的元素
     public static List<WebElement> findElements(By by){
         try {
             return CHROME_DRIVER.findElements(by);
@@ -147,6 +155,7 @@ public class SeleniumUtil {
             return new ArrayList<>();
         }
     }
+    //查找当个匹配的元素
     public static WebElement findElement(By by){
         try {
             return CHROME_DRIVER.findElement(by);
@@ -155,6 +164,7 @@ public class SeleniumUtil {
             return null;
         }
     }
+    //点击指定元素
     public static void click(By by){
         try {
             CHROME_DRIVER.findElement(by).click();
@@ -162,6 +172,7 @@ public class SeleniumUtil {
             log.error("Could not find elemnt:{}", by, e);
         }
     }
+    //检查cookie文件是否存在
     public static boolean isCookeValid(String cookiePath){
         return Files.exists(Paths.get(cookiePath));
     }

@@ -159,7 +159,7 @@ public class Job51 {
         } catch (Exception e) {
             CHROME_DRIVER.navigate().refresh();
             TimeUnit.SECONDS.sleep(1);
-            return ture;
+            return true;
         }
         log.error("非常规投递弹窗！");
         return true;
@@ -220,6 +220,6 @@ public class Job51 {
         CHROME_DRIVER.findElement(By.id("isread_em")).click();
         CHROME_DRIVER.findElement(By.id("login_btn_withPwd")).click();
         //手动点击登录按钮过验证登录
-        WAIT.until(ExpectedConditions.presenceOfElementLocated(By.id("hasresume")))
+        WAIT.until(ExpectedConditions.presenceOfElementLocated(By.id("hasresume")));
     }
 }
